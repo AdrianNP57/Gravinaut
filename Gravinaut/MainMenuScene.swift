@@ -2,7 +2,7 @@
 //  MainMenuScene.swift
 //  Gravinaut
 //
-//  Created by Adrian on 18/03/2017.
+//  Created by Adrián Navarro Pérez on 18/03/2017.
 //  Copyright © 2017 AdrianNP57. All rights reserved.
 //
 

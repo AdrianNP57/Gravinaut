@@ -2,7 +2,7 @@
 //  GameScene.swift
 //  Gravinaut
 //
-//  Created by Adrian on 18/03/2017.
+//  Created by Adrián Navarro Pérez on 18/03/2017.
 //  Copyright © 2017 AdrianNP57. All rights reserved.
 //
 
@@ -35,7 +35,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     var astronaut = SKSpriteNode(imageNamed: "M10")
     
     // Astronaut textures
-    
     var S10 = SKTexture(imageNamed: "S10")
     var S20 = SKTexture(imageNamed: "S20")
     var S30 = SKTexture(imageNamed: "S30")
