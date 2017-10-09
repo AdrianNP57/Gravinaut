@@ -21,7 +21,7 @@ class ExitScene: SKScene
     
     var mainTittleBackground = SKSpriteNode(imageNamed: "blackBackgroundTexture")
     
-    // Are you sure you want to exit?
+    // "Are you sure you want to exit?" Scene
     var exitBackground = SKSpriteNode(imageNamed: "blackBackgroundTexture")
     
     var yesButton = SKSpriteNode(imageNamed: "ButtonTexture")
@@ -48,19 +48,13 @@ class ExitScene: SKScene
          MainBackground.zPosition = 0
          self.addChild(MainBackground)
  
-        
-        // Alternative background
-        /*
-        backgroundColor = UIColor(red: 4/255.0, green: 14/255.0, blue: 97/255.0, alpha: 1.0)
-        */
-        
         // Main Tittle Background
         mainTittleBackground.position = CGPoint(x: size.width * 0.5, y: size.height * 0.825)
         mainTittleBackground.size = CGSize(width: mainTittleBackground.size.width*2.8, height: mainTittleBackground.size.height*1.5)
         mainTittleBackground.zPosition = 1
         self.addChild(mainTittleBackground)
         
-        // Main Tittle
+        // Main Tittle Static
         mainTittleLabel.text = "GRAVINAUT"
         mainTittleLabel.fontSize = 29
         mainTittleLabel.fontColor = SKColor.white
@@ -68,10 +62,12 @@ class ExitScene: SKScene
         mainTittleLabel.zPosition = 2
         self.addChild(mainTittleLabel)
         
-        // Main Tittle moving
-        //let moveDown = SKAction.moveBy(x: 0, y: size.height * 0.01, duration: 1)
-        //let sequence = SKAction.sequence([moveDown, moveDown.reversed()])
-        //mainTittleLabel.run(SKAction.repeatForever(sequence), withKey: "tittleMoving")
+        // Main Tittle Dynamic
+        /*
+        let moveDown = SKAction.moveBy(x: 0, y: size.height * 0.01, duration: 1)
+        let sequence = SKAction.sequence([moveDown, moveDown.reversed()])
+        mainTittleLabel.run(SKAction.repeatForever(sequence), withKey: "tittleMoving")
+         */
         
         // Positioning elements exit menu
         exitBackground.position = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.5)

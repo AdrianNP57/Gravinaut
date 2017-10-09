@@ -26,8 +26,8 @@ class GameViewController: UIViewController
         // View
         let skView = self.view as! SKView
         
-        // 30 FPS
-        skView.preferredFramesPerSecond = 30 // Fix to 30 fps, without this property there's no limit - Thanks http://stackoverflow.com/questions/41761176/purposely-slowing-down-fps-spritekit/41764180
+        // 30 FPS - Thanks for the help! http://stackoverflow.com/questions/41761176/purposely-slowing-down-fps-spritekit/41764180
+        skView.preferredFramesPerSecond = 30 // Fix to 30 fps, without this property there's no limit
         
         // Debug options
         skView.showsFPS = false
@@ -35,7 +35,7 @@ class GameViewController: UIViewController
         skView.ignoresSiblingOrder = true
         skView.presentScene(scene)
         
-        // Music ON - Thanks https://github.com/icanzilb !!!
+        // Music ON - Thanks for the help! https://github.com/icanzilb
         SKTAudio.sharedInstance().playBackgroundMusic("Space.mp3") //
         
     }

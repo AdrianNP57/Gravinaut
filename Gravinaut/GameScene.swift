@@ -21,7 +21,7 @@ struct PhysicsCategory
 
 class GameScene: SKScene, SKPhysicsContactDelegate
 {
-    // Control vars
+    // Control variables
     var controlSpawn = 0
     var dead = 0
     
@@ -103,10 +103,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         
         // Astronaut Physics
         astronaut.physicsBody = SKPhysicsBody(texture: S10, size: astronaut.size)
-        astronaut.physicsBody?.isDynamic = true // Like this we control movement with actions (no gravity on it)
-        astronaut.physicsBody?.categoryBitMask = PhysicsCategory.Astronaut // BitMaskPhysics
-        astronaut.physicsBody?.contactTestBitMask = PhysicsCategory.Meteorite // Notify if it collides with astro
-        astronaut.physicsBody?.collisionBitMask = PhysicsCategory.None // They won't bounce like this
+        astronaut.physicsBody?.isDynamic = true
+        astronaut.physicsBody?.categoryBitMask = PhysicsCategory.Astronaut
+        astronaut.physicsBody?.contactTestBitMask = PhysicsCategory.Meteorite
+        astronaut.physicsBody?.collisionBitMask = PhysicsCategory.None
         astronaut.physicsBody?.usesPreciseCollisionDetection = true
 
         
@@ -123,26 +123,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             withKey: "scrollBackground"
         )
         
-        // World:Preparing Gravity and Physics: https://developer.apple.com/reference/spritekit/skfieldnode#2732549
+        // World:Preparing Gravity and Physics - Thanks for the help! https://developer.apple.com/reference/spritekit/skfieldnode#2732549
         physicsWorld.gravity = CGVector(dx:0, dy: 0)
         physicsWorld.contactDelegate = self
         gravityNodeDown.strength = 1.62 // m/s^2
         gravityNodeUp.strength = 1.62 // m/s^2
     }
 
-    // Operational funcs
-    // Thanks you: https://www.raywenderlich.com/145318/spritekit-swift-3-tutorial-beginners
+    // Operational funcs - Thanks for the help! https://www.raywenderlich.com/145318/spritekit-swift-3-tutorial-beginners
     func random() -> CGFloat
     {
         return CGFloat(Float(arc4random()) / 0xFFFFFFFF)
     }
     
-    // Thanks you: https://www.raywenderlich.com/145318/spritekit-swift-3-tutorial-beginners
+    // Thanks for the help! https://www.raywenderlich.com/145318/spritekit-swift-3-tutorial-beginners
     func random(min: CGFloat, max: CGFloat) -> CGFloat {
         return random() * (max - min) + min
     }
     
-    // Thank you: http://stackoverflow.com/questions/20019522/scrolling-background-sprite-kit
+    // Thanks for the help! http://stackoverflow.com/questions/20019522/scrolling-background-sprite-kit
     func scrollBackground()
     {
         MainBackground1.position = CGPoint(x: MainBackground1.position.x-4, y: MainBackground1.position.y);
@@ -181,17 +180,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             default: break
         }
         // Meteorite physics
-        meteorite.physicsBody?.isDynamic = false // Like this we control movement with actions (no gravity on it)
-        meteorite.physicsBody?.categoryBitMask = PhysicsCategory.Meteorite // What is meteorite in physics?
-        meteorite.physicsBody?.contactTestBitMask = PhysicsCategory.Astronaut // Notify if it collides with astro
-        meteorite.physicsBody?.collisionBitMask = PhysicsCategory.None // They won't bounce like this
+        meteorite.physicsBody?.isDynamic = false
+        meteorite.physicsBody?.categoryBitMask = PhysicsCategory.Meteorite
+        meteorite.physicsBody?.contactTestBitMask = PhysicsCategory.Astronaut
+        meteorite.physicsBody?.collisionBitMask = PhysicsCategory.None
         meteorite.physicsBody?.usesPreciseCollisionDetection = false
+        
         // Meteorite position
-        let whereToSpawn = random(min: 0 , max: frame.size.height) // Where to spawn in the Y axis
-        meteorite.position = CGPoint(x: frame.size.width + meteorite.size.width, y: whereToSpawn) // Positionating
+        let whereToSpawn = random(min: 0 , max: frame.size.height)
+        meteorite.position = CGPoint(x: frame.size.width + meteorite.size.width, y: whereToSpawn)
         meteorite.zPosition = 1
+        
         // Meteorite add
         addChild(meteorite)
+        
         // Meteorite movement and rotation
         let speed = random(min: CGFloat(2.0), max: CGFloat(4.0))
         let meteoriteMove = SKAction.move(to: CGPoint(x: 0-meteorite.size.width/2, y: whereToSpawn), duration: TimeInterval(speed))
@@ -207,7 +209,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
     {
         if (dead==0)
         {
-            // In the first click remove the tutorial and start the meteorite attack
+            // In the first click the tutorial is removed and meteorites start to spawn
             if (controlSpawn==0)
             {
                 // Removing the tutorial
@@ -215,7 +217,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
                 hand.removeFromParent()
                 hand.removeAction(forKey: "movingHand")
                 
-                // Starting the meteorite attack
+                // Starting the meteorite spawn
                 run(SKAction.repeatForever(
                     SKAction.sequence(
                         [
@@ -254,7 +256,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
     }
     
-    func didBegin(_ impact: SKPhysicsContact) // when two nodes collide
+    func didBegin(_ impact: SKPhysicsContact) // When two nodes collide
     {
         if (dead == 0)
         {
@@ -288,11 +290,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         }
     }
     
+    // If the astronaut dies...
     func astronautMeteoriteImpact(astronaut: SKSpriteNode, meteorite: SKSpriteNode)
     {
-        // Astronaut has died
-        // Rocket stops working
-        
         // Stop Meteorite Spawn
         meteorite.removeAction(forKey: "meteoriteSpawn")
         
@@ -300,8 +300,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate
         gravityNodeUp.removeFromParent()
         gravityNodeDown.removeFromParent()
         
-        // Astronaut Death thanks: https://www.hackingwithswift.com/example-code/games/how-to-run-skactions-in-agroup
-        //let scale = SKAction.scale(to: 10, duration: 3)
+        // Astronaut Death - Thanks for the help! https://www.hackingwithswift.com/example-code/games/how-to-run-skactions-in-agroup
         let move = SKAction.move(to: CGPoint(x: size.width * -0.10, y: size.height * -0.10), duration: 2)
         let rotate = SKAction.rotate(byAngle: CGFloat(.pi/(+0.4)), duration: 2)
         let astronautDeathMovement = SKAction.group([move, rotate])
@@ -316,12 +315,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate
             ])
         )
         
-        // Wait 3 seconds - Thanks: http://stackoverflow.com/questions/24034544/dispatch-after-gcd-in-swift
+        // Wait 3 seconds - Thanks for the help! http://stackoverflow.com/questions/24034544/dispatch-after-gcd-in-swift
         let deadlineTime = DispatchTime.now() + 2.5
         DispatchQueue.main.asyncAfter(deadline: deadlineTime)
         {
-            // Removing astronaut from scene
-            
             // Return - Scene change
             let transition = SKTransition.moveIn(with: .down, duration: 0.6)
             let scene:SKScene = GameOverScene(size: self.size)

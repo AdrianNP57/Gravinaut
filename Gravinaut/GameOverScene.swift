@@ -21,7 +21,7 @@ class GameOverScene: SKScene
     
     var mainTittleBackground = SKSpriteNode(imageNamed: "blackBackgroundTexture")
     
-    // Are you sure you want to exit?
+    // // "Do you want to retry?" Scene
     var exitBackground = SKSpriteNode(imageNamed: "blackBackgroundTexture")
     
     var yesButton = SKSpriteNode(imageNamed: "ButtonTexture")
@@ -32,8 +32,8 @@ class GameOverScene: SKScene
     
     var noButton_onHold = SKSpriteNode(imageNamed: "ButtonHoldTexture")
     
-    var exitLabel1 = SKLabelNode(fontNamed: "PressStart2P")
-    var exitLabel2 = SKLabelNode(fontNamed: "PressStart2P")
+    var retryLabel1 = SKLabelNode(fontNamed: "PressStart2P")
+    var retryLabel2 = SKLabelNode(fontNamed: "PressStart2P")
     
     var yesLabel = SKLabelNode(fontNamed: "PressStart2P")
     
@@ -60,7 +60,7 @@ class GameOverScene: SKScene
         mainTittleBackground.zPosition = 1
         self.addChild(mainTittleBackground)
         
-        // Main Tittle
+        // Main Tittle static
         mainTittleLabel.text = "GAME OVER"
         mainTittleLabel.fontSize = 29
         mainTittleLabel.fontColor = SKColor.white
@@ -68,10 +68,12 @@ class GameOverScene: SKScene
         mainTittleLabel.zPosition = 2
         self.addChild(mainTittleLabel)
         
-        // Main Tittle moving
-        //let moveDown = SKAction.moveBy(x: 0, y: size.height * 0.01, duration: 1)
-        //let sequence = SKAction.sequence([moveDown, moveDown.reversed()])
-        //mainTittleLabel.run(SKAction.repeatForever(sequence), withKey: "tittleMoving")
+        // Main Tittle Dynamic
+        /*
+        let moveDown = SKAction.moveBy(x: 0, y: size.height * 0.01, duration: 1)
+        let sequence = SKAction.sequence([moveDown, moveDown.reversed()])
+        mainTittleLabel.run(SKAction.repeatForever(sequence), withKey: "tittleMoving")
+        */
         
         // Positioning elements exit menu
         exitBackground.position = CGPoint(x: frame.size.width * 0.5, y: frame.size.height * 0.5)
@@ -93,21 +95,21 @@ class GameOverScene: SKScene
         noButton_onHold.position = CGPoint(x: size.width * 0.70, y: size.height * 0.43)
         noButton_onHold.zPosition = 2
         
-        // exitLabel1
-        exitLabel1.text = "Do you want"
-        exitLabel1.fontSize = 28
-        exitLabel1.fontColor = SKColor.white
-        exitLabel1.position = CGPoint(x: size.width * 0.49, y: size.height * 0.57)
-        exitLabel1.zPosition = 3
-        self.addChild(exitLabel1)
+        // retryLabel1
+        retryLabel1.text = "Do you want"
+        retryLabel1.fontSize = 28
+        retryLabel1.fontColor = SKColor.white
+        retryLabel1.position = CGPoint(x: size.width * 0.49, y: size.height * 0.57)
+        retryLabel1.zPosition = 3
+        self.addChild(retryLabel1)
         
-        // exitLabel2
-        exitLabel2.text = "to retry?"
-        exitLabel2.fontSize = 28
-        exitLabel2.fontColor = SKColor.white
-        exitLabel2.position = CGPoint(x: size.width * 0.49, y: size.height * 0.52)
-        exitLabel2.zPosition = 3
-        self.addChild(exitLabel2)
+        // retryLabel2
+        retryLabel2.text = "to retry?"
+        retryLabel2.fontSize = 28
+        retryLabel2.fontColor = SKColor.white
+        retryLabel2.position = CGPoint(x: size.width * 0.49, y: size.height * 0.52)
+        retryLabel2.zPosition = 3
+        self.addChild(retryLabel2)
         
         // Label play
         yesLabel.text = "YES"

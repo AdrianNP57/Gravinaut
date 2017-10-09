@@ -25,8 +25,6 @@
  * short sound effects. For when using SKActions just isn't good enough.
 */
 
-// Special thanks to you: icanzhilb - https://github.com/icanzilb !!
-
 /*
 How to use:
 
@@ -37,8 +35,9 @@ SKTAudio.sharedInstance().resumeBackgroundMusic() // Resume the music
  
 -For short sounds
 SKTAudio.sharedInstance().playSoundEffect("sound.wav") // Play the sound once
-*/ 
+*/
 
+// Thank you icanzhilb (https://github.com/icanzilb) you helped so much with Gravinaut thanks to your SKTAudio library.
 
 import AVFoundation
 

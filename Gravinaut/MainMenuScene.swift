@@ -147,7 +147,6 @@ class MainMenuScene: SKScene
                 let transition = SKTransition.fade(withDuration: 0)
                 let scene:SKScene = ExitScene(size: self.size)
                 self.view?.presentScene(scene, transition: transition)
-                //exit(0)
             }
         }
     }
